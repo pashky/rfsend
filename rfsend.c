@@ -109,11 +109,11 @@ static void __exit rfs_exit(void) {
 
 static void safe_udelay(unsigned long usecs)
 {
-	while (usecs > MAX_UDELAY_US) {
-		udelay(MAX_UDELAY_US);
-		usecs -= MAX_UDELAY_US;
-	}
-	udelay(usecs);
+    while (usecs > MAX_UDELAY_US) {
+        udelay(MAX_UDELAY_US);
+        usecs -= MAX_UDELAY_US;
+    }
+    udelay(usecs);
 }
 int rfs_parse(char *buf, struct rfs_packet *packet) {
     memset(packet->length, 0, sizeof(packet->length));
@@ -187,7 +187,7 @@ static int dev_open(struct inode *inodep, struct file *filep) {
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset) {
     int result = strncpy_from_user(packet_buf, buffer, len < MAX_PACKET ? len : MAX_PACKET);
     if (result < 0) {
-		return -EIO;
+        return -EIO;
     }
 
     pr_devel("got packet %s", packet_buf);
