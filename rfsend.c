@@ -165,7 +165,7 @@ int rfs_send(const struct rfs_packet *pkt) {
         safe_udelay(delay_us);
         level ^= 1;
     }
-    gpio_set_value(tx_pin, level);
+    gpio_set_value(tx_pin, 0);
 
     spin_unlock_irqrestore(&lock, flags);
 
